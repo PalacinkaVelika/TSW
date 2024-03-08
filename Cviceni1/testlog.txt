@@ -1,0 +1,4 @@
+Spoustim test secti_dve_cela_kladna_cisla
+Test secti_dve_cela_kladna_cisla probehlo v poradku
+Spoustim test secti_dve_cela_zaporna_cisla
+Test secti_dve_cela_zaporna_cisla probehlo v poradku
