@@ -38,13 +38,13 @@ def picy():
 def objednej():
     if request.method == "POST":
         nazev = request.form.get("nazev")
-        mnozstvi = request.form.get("mnozstvi")
+        mnozstvi = int(request.form.get("mnozstvi"))
       #  flash(nazev)
       #  flash(mnozstvi)
         celkova_cena = 0
         for pica_z in nabidka:
             if pica_z["název"] == nazev:
-                celkova_cena = mnozstvi*pica_z["cena"]
+                celkova_cena = mnozstvi * pica_z["cena"]
                 break
         with open("fakura.txt", "w") as faktura:
             faktura.write(f"Zaplat:{celkova_cena}")
