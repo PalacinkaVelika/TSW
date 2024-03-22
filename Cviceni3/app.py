@@ -72,6 +72,19 @@ def api_get_pica():
     else:   
         return jsonify({"error": f"Pizza '{nazev}' not found"}), 404
 
+@app.route("/api/pica", methods=["POST"])
+def api_post_picy():
+    nazev = request.args.get("jmeno")
+    cena = request.args.get("cena")
+    if not nazev or not cena:
+        return jsonify({"error": "Parameter 'jmeno' or 'cena' is missing"}), 400
+    else:
+        nova_pizza = {nazev : cena}
+        nabidka.append(nova_pizza)
+        return jsonify(nova_pizza), 200
+    
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
     
