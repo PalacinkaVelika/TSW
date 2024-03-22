@@ -83,7 +83,41 @@ def api_post_picy():
         nabidka.append(nova_pizza)
         return jsonify(nova_pizza), 200
     
+@app.route("/api/pica", methods=["PUT"])
+def api_put_picy():
+    nazev = request.args.get("jmeno")
+    cena = request.args.get("cena")
+    if not nazev or not cena:
+        return jsonify({"error": "Parameter 'jmeno' or 'cena' is missing"}), 400
+    else:
+        selected_pizza = None
+        for pizza in nabidka:
+            if pizza["název"] == nazev:
+                pizza["cena"] = cena
+                selected_pizza = pizza
+                break
+        if not selected_pizza:
+            return jsonify({"error": "jmeno not found"}), 400
+        else:
+            nabidka.remove(selected_pizza)
+            return jsonify(selected_pizza), 200
 
+@app.route("/api/pica", methods=["DELETE"])
+def api_delete_picy():
+    nazev = request.args.get("jmeno")
+    if not nazev:
+        return jsonify({"error": "Parameter 'jmeno' is missing"}), 400
+    else:
+        selected_pizza = None
+        for pizza in nabidka:
+            if pizza["název"] == nazev:
+                selected_pizza = pizza
+                break
+        if not selected_pizza:
+            return jsonify({"error": "jmeno not found"}), 400
+        else:
+            nabidka.remove(selected_pizza)
+            return jsonify({"success": f"Pizza '{nazev}' is deleted"}), 200
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
