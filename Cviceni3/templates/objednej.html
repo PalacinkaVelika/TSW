@@ -1,0 +1,23 @@
+{% extends "main_page_template.html" %}
+{% block subtitle %}Objednej{% endblock %}
+{% block main %}
+
+<form action="/objednej" method="post">
+    <label for="nazev">Název: </label>
+    <input type="text" name="nazev" required><br><br>
+    <label for="mnozstvi">Množství: </label>
+    <input type="text" name="mnozstvi" required><br><br>
+    <button type="submit">Odeslat</button>
+</form>
+<!-- Display flashed messages -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+
+{% endblock %}
