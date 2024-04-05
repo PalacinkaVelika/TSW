@@ -6,7 +6,7 @@ class ChromeTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome()
     
-    def test_first_recipe(self):
+    def test_existujici_vyrobek(self):
         self.driver.get("http://127.0.0.1:5000/picy")
         text_prvniho_receptu = self.driver.find_element(
             By.XPATH, "//ol/li[1]").text
