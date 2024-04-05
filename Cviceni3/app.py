@@ -51,6 +51,21 @@ def objednej():
         return redirect("/")
     return render_template("objednej.html")
 
+@app.route("/vytvor", methods=["GET","POST"])
+def vytvor():
+    if request.method == "POST":
+        nazev = request.form.get("nazev")
+        cena = int(request.form.get("cena"))
+        nabidka.append(
+            {
+                "název": nazev,
+                "cena": cena
+            }
+        )
+        print(nabidka)
+        return redirect("/")
+    return render_template("vytvor.html")
+
 @app.route("/api/picy", methods=["GET"])
 def api_get_picy():
     return make_response(json.dumps(nabidka), 200)
@@ -121,4 +136,3 @@ def api_delete_picy():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
-    
